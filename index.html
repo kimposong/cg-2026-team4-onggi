@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- index.html — 실행 진입점: <canvas> 하나만 둔다 (팀 프로젝트 기술 제약) -->
+<!-- VS Code에서 파일을 바로 열거나 Live Server로 열어도 동작하도록 type="module" 을 쓰지 않는다 -->
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>점말 옹기장</title>
+  <style>
+    /* 캔버스를 전체 화면으로 만드는 것 외에는 CSS를 쓰지 않는다 */
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #2a211c; }
+    /* touch-action: none — 드래그 중 화면이 스크롤·확대되지 않게 막는다 (휴대폰 터치 조작에 필수) */
+    canvas { display: block; width: 100vw; height: 100vh; touch-action: none;
+             user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+  </style>
+</head>
+<body>
+  <canvas></canvas>
+
+  <!-- gl-matrix: 자료실에서 안내한 벡터·행렬 라이브러리 (전역 glMatrix) -->
+  <script src="https://cdn.jsdelivr.net/npm/gl-matrix@3.4.3/gl-matrix-min.js"></script>
+
+  <!-- 순서가 중요하다: 뒤 파일이 앞 파일의 객체를 쓴다 -->
+  <!-- core: 어느 화면이든 쓰는 도구 (엔진 역할). 특정 화면 전용 코드는 넣지 않는다 -->
+  <script src="./src/core/program.js"></script>
+  <script src="./src/core/text.js"></script>
+  <script src="./src/core/mesh.js"></script>
+  <script src="./src/core/camera.js"></script>
+  <script src="./src/core/ui.js"></script>
+  <script src="./src/core/input.js"></script>
+
+  <!-- shared: 두 화면 이상이 같이 쓰는 셰이더·소품 -->
+  <script src="./src/shared/potShader.js"></script>
+  <script src="./src/shared/wheel.js"></script>
+
+  <!-- pot: 옹기를 만드는 공통 틀 -->
+  <script src="./src/pot/pot.js"></script>
+
+  <!-- scenes: 화면마다 하나. 화면 전용 셰이더·메시는 그 파일 안에 -->
+  <script src="./src/scenes/scenes.js"></script>
+  <script src="./src/scenes/start.js"></script>
+  <script src="./src/scenes/stage1-knead.js"></script>
+  <script src="./src/scenes/stage2-base.js"></script>
+  <script src="./src/scenes/stage3-stack.js"></script>
+  <script src="./src/scenes/stage4-shape.js"></script>
+  <script src="./src/scenes/stage5-decorate.js"></script>
+  <script src="./src/scenes/stage6-glaze.js"></script>
+  <script src="./src/scenes/stage7-result.js"></script>
+  <script src="./src/scenes/gallery/gallery.js"></script>
+
+  <script src="./src/main.js"></script>
+</body>
+</html>
