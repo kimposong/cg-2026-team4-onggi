@@ -92,6 +92,6 @@
 
   resize();
   // 지금은 4단계만 만들어져 있으므로 바로 4단계로 시작한다. 시작 화면이 완성되면 'start' 로 바꾼다
-  Scenes.go(ctx, 'stage4-shape');
+  Scenes.go(ctx, 'stage1-knead');
   requestAnimationFrame(frame);
 })();
